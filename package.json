@@ -1,0 +1,22 @@
+{
+  "name": "angular1_directives",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ElenaBorisenkoO/angular1_directives.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ElenaBorisenkoO/angular1_directives/issues"
+  },
+  "homepage": "https://github.com/ElenaBorisenkoO/angular1_directives#readme",
+  "dependencies": {
+    "eslint": "^5.13.0"
+  }
+}
