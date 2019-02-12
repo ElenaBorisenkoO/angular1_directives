@@ -6,7 +6,6 @@
       directives[name] = [cb];
     },
 
-
     compile(node) {
       const atributeNames = node.getAttributeNames();
 
@@ -20,8 +19,20 @@
     },
 
     bootstrap(node) {
+      if (!node) {
+        // eslint-disable-next-line no-param-reassign
+        node = document.querySelector('*[ng-app]');
+      }
+
+      if (!node) {
+        throw new TypeError('Cannot initialize app');
+      }
+      node.querySelectorAll('*').forEach(el => {
+        this.compile(el);
+      });
     }
   };
+
 
   smallAngular.directive('ng-model', function(el) {
   });
