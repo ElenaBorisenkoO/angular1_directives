@@ -4,6 +4,10 @@
   const smallAngular = {
 
     directive(name, cb) {
+        if(directives[name]){
+            directives[name].push(cb);
+            return
+        }
       directives[name] = [cb];
     },
 
@@ -38,7 +42,11 @@
     });
 
     smallAngular.directive('ng-click', function(el) {
-        console.log("click");
+        console.log("click1");
+    });
+
+    smallAngular.directive('ng-click', function(el) {
+        console.log("click2");
     });
 
     smallAngular.directive('ng-show', function(el) {
@@ -51,6 +59,7 @@
     });
 
     smallAngular.directive('make_short', function(el) {
+        console.log("make it short");
     });
 
   window.smallAngular = smallAngular;
