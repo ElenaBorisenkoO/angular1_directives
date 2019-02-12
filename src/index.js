@@ -3,7 +3,9 @@
   const smallAngular = {
 
     directive(name, cb) {
+      directives[name] = [cb];
     },
+
 
     compile(node) {
     },
