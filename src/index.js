@@ -8,7 +8,17 @@
 
 
     compile(node) {
+      const atributeNames = node.getAttributeNames();
+
+      if (atributeNames)
+      { atributeNames.forEach(item => {
+        if (item.startsWith('ng-')) {
+          if (directives[item])
+          { directives[item].forEach(cb => cb(node)); }
+        }
+      }); }
     },
+
     bootstrap(node) {
     }
   };
