@@ -1,3 +1,4 @@
+/*eslint-disable*/
 (function() {
   const directives = {};
   const smallAngular = {
@@ -20,7 +21,6 @@
 
     bootstrap(node) {
       if (!node) {
-        // eslint-disable-next-line no-param-reassign
         node = document.querySelector('*[ng-app]');
       }
 
@@ -33,22 +33,28 @@
     }
   };
 
+    smallAngular.directive('ng-model', function(el) {
+        console.log("model");
+    });
 
-  smallAngular.directive('ng-model', function(el) {
-  });
+    smallAngular.directive('ng-click', function(el) {
+        console.log("click");
+    });
 
-  smallAngular.directive('ng-click', function(el) {
-  });
+    smallAngular.directive('ng-show', function(el) {
+        console.log("show");
+    });
 
-  smallAngular.directive('ng-show', function(el) {
-  });
+    smallAngular.directive('ng-hide', function(el) {
+        console.log("hide");
 
-  smallAngular.directive('ng-hide', function(el) {
-  });
+    });
 
-  smallAngular.directive('make_short', function(el) {
-  });
+    smallAngular.directive('make_short', function(el) {
+    });
 
   window.smallAngular = smallAngular;
 }());
+
+smallAngular.bootstrap(document.querySelector('body'));
 
