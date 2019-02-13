@@ -2,14 +2,16 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title>Angular1</title>
-    <link href="style.css" rel="stylesheet">  
+    <title>Angular1</title> 
   </head>
   <body ng-app ng-init="name='ivan'">
-      <h1 ng-hide ng-click >Hello Plunker!</h1>
-      <div ng-show ng-click > hi Ivan!!! </div>
-      <input ng-model/>
-      <p  ng-click>qwqeweq...</p>
-    <script src="src/index.js"></script>
-    </body>  
+      <div ng-show="true"> hi Ivan!!! </div>
+      <input ng-model="name"/>
+      <p ng-make-short>qqq qqq qqq qqq qqq qqq qqq</p>
+      <p ng-bind="name"></p>
+      <p ng-click="name">{{name}}</p>
+      <p ng-hide="name"></p>
+      <script src="src/index.js"></script>
+  </body> 
+   
 </html>
