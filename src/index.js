@@ -110,6 +110,12 @@
       el.style.display = eval(data) ? 'none' : 'block';
     });
   });
+  smallAngular.directive('to-uppercase', function(scope, el, attrs) {
+    el.innerHTML = el.innerHTML.toUpperCase();
+    rootScope.$watch(el, () => {
+      el.innerHTML = el.innerHTML.toUpperCase();
+    });
+  });
   smallAngular.directive('make-short', function(scope, el, attrs) {
     const length = el.getAttribute('length');
     el.innerText = el.innerText.slice(0, eval(length));
