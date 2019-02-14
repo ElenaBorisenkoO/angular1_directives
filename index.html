@@ -5,15 +5,16 @@
     <title>Angular1</title> 
   </head>
   <body ng-app ng-init="name='ivan'">
-      <div ng-show="true"> hi Ivan!!! </div>
+      <div ng-show="true" > hi Ivan!!! </div>
       <input ng-model="name"/>
-      <p make-short length='10'>qqq qqq qqq qqq qqq qqq qqq</p>
+      <p ng-make-short length='10'>qqq qqq qqq qqq qqq qqq qqq</p>
       <p ng-bind="name"></p>
       <button ng-click="onClick()">set value to vasya</button>
       <p ng-hide="true">Must be hide</p>
       <ul ng-show="name === 'vasya'">
         <li>one</li>
       </ul>
+      <p ng-random-color>Lorem ipsum dolor sit amet, consectetur adipiscing elit. In placerat.</p>
       <script src="src/index.js"></script>
   </body> 
    
