@@ -1,6 +1,19 @@
 /* eslint-disable no-console*/
+/* eslint-disable no-eval */
 (function() {
   const directives = {};
+  const watchers = []; // массив вотчеров
+  const rootScope = window; // виндов для того,чтобы работать с eval
+  rootScope.onClick = () => {
+    rootScope.name = 'vasya';
+  };
+  rootScope.$watch = (name, watcher) => { // name - переменная,за которой следим,функция вотчер
+    watchers.push({ name, watcher });
+  };
+  rootScope.$apply = () => {
+    watchers.forEach(({ watcher }) => watcher());
+  }; // принимает вотчер и запускает его,применяет изменение
+
   const smallAngular = {
 
     directive(name, cb) {
@@ -17,8 +30,12 @@
       if (atributeNames) {
         atributeNames.forEach(item => {
           if (item.startsWith('ng-')) {
+            // если начинает с ng то запускаем директивы
             if (directives[item]) {
-              directives[item].forEach(cb => cb(node));
+              directives[item].forEach(cb => cb(rootScope, node /* атрибуты без ng*/));
+              // скоуп передаем в дир-ву для поиска нем данных
+              // скоуп,нода,атрибуты(без ng атрибуты передаем третьим параметром)
+              // по итогу 2 массива: c ng выполняем, без ng передаем тратьим параметром
             }
           }
         });
@@ -45,24 +62,36 @@
     console.log('model', el);
   });
 
-  smallAngular.directive('ng-click', function(el) {
-    console.log('click1', el);
+  smallAngular.directive('ng-click', function(scope, el) {
+    el.addEventListener('click', e => {
+      const data = el.getAttribute('ng-click');
+      eval(data);
+      scope.$apply();
+    });
   });
 
-  smallAngular.directive('ng-click', function(el) {
-    console.log('click2', el);
+  smallAngular.directive('ng-show', function(scope, el, attrs) {
+    const data = el.getAttribute('ng-show');
+    el.style.display = eval(data) ? 'block' : 'none'; // при первом старте применяем изменения
+    rootScope.$watch(data, () => {
+      el.style.display = eval(data) ? 'block' : 'none'; // при последующих стартах реагируем на изменения
+    });
+    console.log('show', scope, el, attrs);
+  }); // если где-то изменили переменную, то запускаем все директивы заново(бутстрап)
+
+  smallAngular.directive('ng-hide', function(scope, el, attrs) {
+    const data = el.getAttribute('ng-hide');
+    el.style.display = eval(data) ? 'none' : 'block'; // при первом старте применяем изменения
+    rootScope.$watch(data, () => {
+      el.style.display = eval(data) ? 'none' : 'block'; // при последующих стартах реагируем на изменения
+    });
+    console.log('show', scope, el, attrs);
   });
 
-  smallAngular.directive('ng-show', function(el) {
-    console.log('show', el);
-  });
-
-  smallAngular.directive('ng-hide', function(el) {
-    console.log('hide', el);
-  });
-
-  smallAngular.directive('make_short', function(el) {
-    console.log('make it short');
+  smallAngular.directive('make-short', function(scope, el, attrs) {
+    // attrs в виде объекта {length:10}
+    // attrs.length =
+    // el.text = el.text.slice(attrs.length) + '...'
   });
 
   window.smallAngular = smallAngular;
