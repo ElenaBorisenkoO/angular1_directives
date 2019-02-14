@@ -13,6 +13,7 @@
   rootScope.$apply = () => {
     watchers.forEach(({ watcher }) => watcher());
   }; // принимает вотчер и запускает его,применяет изменение
+  rootScope.surname = 'borisenko';
 
   const smallAngular = {
 
@@ -59,13 +60,25 @@
   };
 
   smallAngular.directive('ng-model', function(el) {
-    console.log('model', el);
+
   });
-  smallAngular.directive('ng-bind', function(el) {
-    console.log('model', el);
+  smallAngular.directive('ng-bind', function(scope, el) {
+    const data = el.getAttribute('ng-bind');
+    console.log(data);
+
+    if (data in scope) {
+      el.innerHTML = scope[data];
+    }
+    rootScope.$watch(data, () => {
+      el.innerHTML = scope[data];
+    });
   });
+  smallAngular.directive('ng-init', function(scope, el) {
+    const data = el.getAttribute('ng-init');
+    rootScope.name = eval(data);
+  });
+
   smallAngular.directive('ng-repeat', function(el) {
-    console.log('model', el);
   });
 
   smallAngular.directive('ng-click', function(scope, el) {
@@ -98,7 +111,7 @@
     const length = el.getAttribute('length');
     el.innerText = el.innerText.slice(0, eval(length));
     rootScope.$watch(length, () => {
-      el.innerText = el.innerText.slice(0, eval(length)); // при последующих стартах реагируем на изменения
+      el.innerText = el.innerText.slice(0, eval(length));
     });
     console.log(length);
   });

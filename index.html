@@ -4,8 +4,8 @@
     <meta charset="utf-8">
     <title>Angular1</title> 
   </head>
-  <body ng-app ng-init="name='ivan'">
-      <div ng-show="true" > hi Ivan!!! </div>
+  <body ng-app>
+      <div ng-show="true" ng-init="name ='ivan'"> hi Ivan!!! </div>
       <input ng-model="name"/>
       <p ng-make-short length='10'>qqq qqq qqq qqq qqq qqq qqq</p>
       <p ng-bind="name"></p>
@@ -15,6 +15,7 @@
         <li>one</li>
       </ul>
       <p ng-random-color>Lorem ipsum dolor sit amet, consectetur adipiscing elit. In placerat.</p>
+      <p ng-bind ="surname"></p>
       <script src="src/index.js"></script>
   </body> 
    
