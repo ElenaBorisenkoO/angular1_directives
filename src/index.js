@@ -1,18 +1,16 @@
 /* eslint-disable no-eval */
+/* eslint-disable no-empty-function */
 (function() {
   const directives = {};
   const watchers = [];
   const rootScope = window;
-  rootScope.onClick = () => {
-    rootScope.name = 'vasya';
-  };
+
   rootScope.$watch = (name, watcher) => {
     watchers.push({ name, watcher });
   };
   rootScope.$apply = () => {
     watchers.forEach(({ watcher }) => watcher());
   };
-  rootScope.surname = 'borisenko';
 
   const smallAngular = {
 
@@ -68,14 +66,14 @@
     if (data in scope) {
       el.innerHTML = scope[data];
     }
-    rootScope.$watch(data, () => {
+    scope.$watch(() => {}, () => {
       el.innerHTML = scope[data];
     });
   });
 
   smallAngular.directive('ng-init', function(scope, el) {
     const data = el.getAttribute('ng-init');
-    rootScope.name = eval(data);
+    scope.name = eval(data);
   });
 
   smallAngular.directive('ng-repeat', function(scope, el) {
@@ -113,35 +111,36 @@
   smallAngular.directive('ng-show', function(scope, el) {
     const data = el.getAttribute('ng-show');
     el.style.display = eval(data) ? 'block' : 'none';
-    rootScope.$watch(data, () => {
+    scope.$watch(() => {}, () => {
       el.style.display = eval(data) ? 'block' : 'none';
     });
+    scope.$apply();
   });
 
   smallAngular.directive('ng-hide', function(scope, el) {
     const data = el.getAttribute('ng-hide');
     el.style.display = eval(data) ? 'none' : 'block';
-    rootScope.$watch(data, () => {
+    scope.$watch(() => {}, () => {
       el.style.display = eval(data) ? 'none' : 'block';
     });
   });
 
-  smallAngular.directive('to-uppercase', function(scope, el, attrs) {
+  smallAngular.directive('to-uppercase', function(scope, el) {
     el.innerHTML = el.innerHTML.toUpperCase();
-    rootScope.$watch(el, () => {
+    scope.$watch(() => el, () => {
       el.innerHTML = el.innerHTML.toUpperCase();
     });
   });
 
-  smallAngular.directive('make-short', function(scope, el, attrs) {
+  smallAngular.directive('make-short', function(scope, el) {
     const length = el.getAttribute('length');
     el.innerText = el.innerText.slice(0, eval(length));
-    rootScope.$watch(() => length, () => {
+    scope.$watch(() => length, () => {
       el.innerText = el.innerText.slice(0, eval(length));
     });
   });
 
-  smallAngular.directive('random-color', function(scope, el, attrs) {
+  smallAngular.directive('random-color', function(scope, el) {
     el.addEventListener('click', function() {
       const letters = '0123456789ABCDEF'.split('');
       let color = '#';
