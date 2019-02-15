@@ -1,4 +1,3 @@
-/* eslint-disable no-console*/
 /* eslint-disable no-eval */
 (function() {
   const directives = {};
@@ -54,6 +53,7 @@
       });
     }
   };
+
   smallAngular.directive('ng-model', function(scope, el) {
     const data = el.getAttribute('ng-model');
     el.addEventListener('input', e => {
@@ -61,6 +61,7 @@
       scope.$apply();
     });
   });
+
   smallAngular.directive('ng-bind', function(scope, el) {
     const data = el.getAttribute('ng-bind');
 
@@ -71,22 +72,34 @@
       el.innerHTML = scope[data];
     });
   });
+
   smallAngular.directive('ng-init', function(scope, el) {
     const data = el.getAttribute('ng-init');
     rootScope.name = eval(data);
   });
 
-  smallAngular.directive('ng-repeat', function(scope, el, attrs) {
+  smallAngular.directive('ng-repeat', function(scope, el) {
     const data = el.getAttribute('ng-repeat');
-    const letters = eval(data.split('in')[1]).split('');
-    console.log(letters);
+    const dirName = data.split(' ')[2];
+    const parentElem = el.parentNode;
 
-    letters.forEach(letter => {
-      const li = el.cloneNode();
-      li.innerText = letter;
-      const parent = el.parentNode;
-      parent.insertBefore(li, el);
+    scope.$watch(dirName, () => {
+      const scopeName = scope[dirName];
+      const letters = Array.from(document.querySelectorAll(`[ng-repeat="${data}"]`));
+
+      for (const elem of scopeName) {
+        const li = el.cloneNode(false);
+
+        li.innerText = elem;
+        parentElem.appendChild(li);
+      }
+
+      for (const letter of letters) {
+        letter.remove();
+      }
     });
+
+    scope.$apply();
   });
 
   smallAngular.directive('ng-click', function(scope, el) {
@@ -96,33 +109,38 @@
       scope.$apply();
     });
   });
-  smallAngular.directive('ng-show', function(scope, el, attrs) {
+
+  smallAngular.directive('ng-show', function(scope, el) {
     const data = el.getAttribute('ng-show');
     el.style.display = eval(data) ? 'block' : 'none';
     rootScope.$watch(data, () => {
       el.style.display = eval(data) ? 'block' : 'none';
     });
   });
-  smallAngular.directive('ng-hide', function(scope, el, attrs) {
+
+  smallAngular.directive('ng-hide', function(scope, el) {
     const data = el.getAttribute('ng-hide');
     el.style.display = eval(data) ? 'none' : 'block';
     rootScope.$watch(data, () => {
       el.style.display = eval(data) ? 'none' : 'block';
     });
   });
+
   smallAngular.directive('to-uppercase', function(scope, el, attrs) {
     el.innerHTML = el.innerHTML.toUpperCase();
     rootScope.$watch(el, () => {
       el.innerHTML = el.innerHTML.toUpperCase();
     });
   });
+
   smallAngular.directive('make-short', function(scope, el, attrs) {
     const length = el.getAttribute('length');
     el.innerText = el.innerText.slice(0, eval(length));
-    rootScope.$watch(length, () => {
+    rootScope.$watch(() => length, () => {
       el.innerText = el.innerText.slice(0, eval(length));
     });
   });
+
   smallAngular.directive('random-color', function(scope, el, attrs) {
     el.addEventListener('click', function() {
       const letters = '0123456789ABCDEF'.split('');
