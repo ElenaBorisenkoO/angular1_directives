@@ -1,5 +1,3 @@
-/* eslint-disable no-eval */
-/* eslint-disable no-empty-function */
 (function() {
   const directives = {};
   const watchers = [];
@@ -68,10 +66,10 @@
     const data = el.getAttribute('ng-bind');
 
     if (data in scope) {
-      el.innerHTML = scope[data];
+      el.innerText = scope[data];
     }
     scope.$watch(() => {}, () => {
-      el.innerHTML = scope[data];
+      el.innerText = scope[data];
     });
   });
 
@@ -130,9 +128,9 @@
   });
 
   smallAngular.directive('to-uppercase', function(scope, el) {
-    el.innerHTML = el.innerHTML.toUpperCase();
+    el.innerText = el.innerText.toUpperCase();
     scope.$watch(() => el, () => {
-      el.innerHTML = el.innerHTML.toUpperCase();
+      el.innerText = el.innerText.toUpperCase();
     });
   });
 
