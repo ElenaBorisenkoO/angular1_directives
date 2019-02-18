@@ -4,13 +4,21 @@
     <meta charset="utf-8">
     <title>Angular1</title> 
   </head>
-  <body ng-app ng-init="name='ivan'">
-      <div ng-show="true"> hi Ivan!!! </div>
+  <body ng-app>
+      <div ng-show="true" ng-init="name ='ivan'"> hi Ivan!!! </div>
       <input ng-model="name"/>
-      <p ng-make-short>qqq qqq qqq qqq qqq qqq qqq</p>
+      <p make-short length='10' to-uppercase>qqq qqq qqq qqq qqq qqq qqq</p>
       <p ng-bind="name"></p>
-      <p ng-click="name">{{name}}</p>
-      <p ng-hide="name"></p>
+      <button ng-click="name = 'vasya'">set value to vasya</button>
+      <p ng-hide="true">Must be hide</p>
+      <ul ng-show="name === 'vasya'">
+        <li>one</li>
+      </ul>
+      <p random-color>Lorem ipsum dolor sit amet, consectetur adipiscing elit. In placerat.</p>
+      <p ng-bind ="surname"></p>
+      <ul >
+        <li ng-repeat="letter in name"></li>
+      </ul>
       <script src="src/index.js"></script>
   </body> 
    
