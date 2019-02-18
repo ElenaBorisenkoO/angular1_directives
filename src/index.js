@@ -54,9 +54,13 @@
 
   smallAngular.directive('ng-model', function(scope, el) {
     const data = el.getAttribute('ng-model');
+    el.value = eval(data);
     el.addEventListener('input', e => {
       scope[data] = el.value;
       scope.$apply();
+    });
+    scope.$watch(() => {}, () => {
+      el.value = eval(data);
     });
   });
 
