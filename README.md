@@ -1,5 +1,8 @@
-# angular1_directives
-This project demonstrates own realization of AngularJS directives by vanilla JS. You can find these directives:
+Small Angular project
+
+This project demonstrates own realization of AngularJS directives by vanilla JS. 
+
+You can find these directives:
 
 1. ng-model directive binds the value of HTML controls (input, select, textarea) to application data,
 2. ng-bind  directive binds the innerHTML of the element to the specified model property,
