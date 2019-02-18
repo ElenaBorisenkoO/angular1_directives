@@ -137,7 +137,7 @@
   smallAngular.directive('make-short', function(scope, el) {
     const length = el.getAttribute('length');
     el.innerText = el.innerText.slice(0, eval(length));
-    scope.$watch(() => length, () => {
+    scope.$watch(() => el.getAttribute('length'), () => {
       el.innerText = el.innerText.slice(0, eval(length));
     });
   });
