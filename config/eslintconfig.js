@@ -13,7 +13,6 @@ module.exports = {
   ],
   'globals': {
     'expect': true,
-    'module': true,
     'jest': true,
     'beforeEach': true,
     'describe': true,

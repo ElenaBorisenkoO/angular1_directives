@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Angular1</title> 
+  </head>
+  <body ng-app>
+      <div ng-show="true" ng-init="name ='ivan'"> hi Ivan!!! </div>
+      <input ng-model="name"/>
+      <input ng-model="name"/>
+      <p make-short length='10' to-uppercase>qqq qqq qqq qqq qqq qqq qqq</p>
+      <p ng-bind="name"></p>
+      <button ng-click="name = 'vasya'">set value to vasya</button>
+      <p ng-hide="true">Must be hide</p>
+      <ul ng-show="name === 'vasya'">
+        <li>one</li>
+      </ul>
+      <p random-color>Lorem ipsum dolor sit amet, consectetur adipiscing elit. In placerat.</p>
+      <p ng-bind ="surname"></p>
+      <ul >
+        <li ng-repeat="letter in name"></li>
+      </ul>
+      <script src="src/index.js"></script>
+  </body> 
+   
+</html>
