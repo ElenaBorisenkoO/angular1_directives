@@ -127,9 +127,6 @@
 
   smallAngular.directive('to-uppercase', function(scope, el) {
     el.innerText = el.innerText.toUpperCase();
-    scope.$watch(() => el, () => {
-      el.innerText = el.innerText.toUpperCase();
-    });
   });
 
   smallAngular.directive('make-short', function(scope, el) {
