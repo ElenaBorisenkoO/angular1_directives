@@ -78,7 +78,7 @@
 
   smallAngular.directive('ng-repeat', function(scope, el) {
     const data = el.getAttribute('ng-repeat');
-    const dirName = data.split(' ')[2];
+    const [, , dirName] = data.split(' ');
     const parentElem = el.parentNode;
     const appendElement = () => {
       const scopeName = scope[dirName];
