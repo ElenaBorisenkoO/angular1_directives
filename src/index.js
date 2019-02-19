@@ -112,7 +112,7 @@
   smallAngular.directive('ng-show', function(scope, el) {
     const data = el.getAttribute('ng-show');
     el.style.display = eval(data) ? 'block' : 'none';
-    scope.$watch(() => {}, () => {
+    scope.$watch(() => eval(data), () => {
       el.style.display = eval(data) ? 'block' : 'none';
     });
   });
@@ -120,7 +120,7 @@
   smallAngular.directive('ng-hide', function(scope, el) {
     const data = el.getAttribute('ng-hide');
     el.style.display = eval(data) ? 'none' : 'block';
-    scope.$watch(() => {}, () => {
+    scope.$watch(() => eval(data), () => {
       el.style.display = eval(data) ? 'none' : 'block';
     });
   });
