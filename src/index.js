@@ -79,7 +79,7 @@
     const parentElem = el.parentNode;
     const appendElement = () => {
       const scopeName = scope[dirName];
-      const letters = document.querySelectorAll(`[ng-repeat="${data}"]`);
+      const letters = parentElem.querySelectorAll('[ng-repeat]');
 
       for (const elem of scopeName) {
         const li = el.cloneNode(false);
