@@ -85,7 +85,7 @@
 
     scope.$watch(dirName, () => {
       const scopeName = scope[dirName];
-      const letters = Array.from(document.querySelectorAll(`[ng-repeat="${data}"]`));
+      const letters = document.querySelectorAll(`[ng-repeat="${data}"]`);
 
       for (const elem of scopeName) {
         const li = el.cloneNode(false);
