@@ -82,8 +82,7 @@
     const data = el.getAttribute('ng-repeat');
     const dirName = data.split(' ')[2];
     const parentElem = el.parentNode;
-
-    scope.$watch(dirName, () => {
+    const appendElement = () => {
       const scopeName = scope[dirName];
       const letters = document.querySelectorAll(`[ng-repeat="${data}"]`);
 
@@ -94,10 +93,12 @@
         parentElem.appendChild(li);
       }
 
-      for (const letter of letters) {
-        letter.remove();
-      }
-    });
+      letters.forEach(letter => letter.remove());
+    };
+
+    appendElement();
+
+    scope.$watch(dirName, () => appendElement());
   });
 
   smallAngular.directive('ng-click', function(scope, el) {
