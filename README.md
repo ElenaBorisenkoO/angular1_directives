@@ -1,4 +1,4 @@
-Small Angular project
+# Small Angular project
 
 This project demonstrates own realization of AngularJS directives by vanilla JS. 
 
