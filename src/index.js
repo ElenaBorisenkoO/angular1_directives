@@ -98,8 +98,6 @@
         letter.remove();
       }
     });
-
-    scope.$apply();
   });
 
   smallAngular.directive('ng-click', function(scope, el) {
