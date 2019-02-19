@@ -54,7 +54,7 @@ random-color
 ```
 paints a background of element in a random color by click
 
-###You may add any own directive the following way:
+### You may add any own directive the following way:
 
 ```bash
 smallAngular.directive('ng-name-of-directive', function(scope, node, attrs) {
