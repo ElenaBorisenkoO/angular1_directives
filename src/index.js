@@ -41,9 +41,6 @@
         nodElem = document.querySelector('*[ng-app]');
       }
 
-      if (!node) {
-        throw new TypeError('Cannot initialize app');
-      }
       nodElem.querySelectorAll('*').forEach(el => {
         this.compile(el);
       });
