@@ -64,10 +64,8 @@
 
   smallAngular.directive('ng-bind', function(scope, el) {
     const data = el.getAttribute('ng-bind');
+    el.innerText = scope[data];
 
-    if (data in scope) {
-      el.innerText = scope[data];
-    }
     scope.$watch(data, () => {
       el.innerText = scope[data];
     });
