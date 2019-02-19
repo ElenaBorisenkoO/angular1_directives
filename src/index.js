@@ -114,7 +114,6 @@
     scope.$watch(() => {}, () => {
       el.style.display = eval(data) ? 'block' : 'none';
     });
-    scope.$apply();
   });
 
   smallAngular.directive('ng-hide', function(scope, el) {
