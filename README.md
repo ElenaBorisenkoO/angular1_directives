@@ -1,4 +1,4 @@
-🌏<h1 align="center"> Small Angular project</h1>
+<h1 align="center"> 🌏Small Angular project</h1>
 
 This project demonstrates own realization of AngularJS directives by vanilla JS. 
 
